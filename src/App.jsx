@@ -3,6 +3,11 @@ import { motion } from 'framer-motion';
 import './App.css';
 import CCLogo from './assets/CCLogo.png';
 import SocialIcons from './Socialmedia.jsx';
+// All Modals
+import ClimbingModal from './ClimbingModal';
+import BoardGamesModal from './BoardGamesModal';
+import FunSwedishModal from './FunSwedishModal';
+import CraftsModal from './CraftsModal';
 
 function App() {
   const cardData = [
@@ -41,6 +46,10 @@ function App() {
   ];
 
   const [cards, setCards] = useState(cardData);
+  const [isClimbingModalOpen, setIsClimbingModalOpen] = useState(false);
+  const [isBoardGamesModalOpen, setIsBoardGamesModalOpen] = useState(false);
+  const [isFunSwedishModalOpen, setIsFunSwedishModalOpen] = useState(false);
+  const [isCraftsModalOpen, setIsCraftsModalOpen] = useState(false);
 
   const rotateCards = () => {
     setCards((prevCards) => {
@@ -59,6 +68,22 @@ function App() {
       rotateCards();
     }
   };
+
+  // Climbing
+  const openClimbingModal = () => setIsClimbingModalOpen(true);
+  const closeClimbingModal = () => setIsClimbingModalOpen(false);
+
+  // Board Games
+  const openBoardGamesModal = () => setIsBoardGamesModalOpen(true);
+  const closeBoardGamesModal = () => setIsBoardGamesModalOpen(false);
+
+  // Fun Swedish
+  const openFunSwedishModal = () => setIsFunSwedishModalOpen(true);
+  const closeFunSwedishModal = () => setIsFunSwedishModalOpen(false);
+
+  // Crafts
+  const openCraftsModal = () => setIsCraftsModalOpen(true);
+  const closeCraftsModal = () => setIsCraftsModalOpen(false);
 
   // Animation variants
   const variants = {
@@ -98,40 +123,67 @@ function App() {
         onClick={rotateCards}
         onWheel={handleScroll}
       >
-        {cards.map((card, index) => (
-          <motion.div
-            key={card.id}
-            className="absolute bottom-0 left-0 w-full"
-            style={{
-              zIndex: cards.length - index,
-            }}
-            custom={index}
-            variants={variants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
+      {cards.map((card, index) => (
+        <motion.div
+          key={card.id}
+          className="absolute bottom-0 left-0 w-full"
+          style={{
+            zIndex: cards.length - index,
+          }}
+          custom={index}
+          variants={variants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          <div
+            className={`card ${card.bgColor} text-center rounded-2 border-2 border-black shadow-black shadow-xl`}
           >
-            <div className={`card ${card.bgColor} text-center rounded-2 border-2 border-black shadow-black shadow-xl`}>
-              <div className="card-body flex flex-col items-center justify-center">
-                <h2 className="card-title text-black text-center text-2xl font-bold top-10">
-                  {card.title}
-                </h2>
-                <div className='text-left font-bold'>
-                  <p className="p-2 text-gray-700">Date: {card.date}</p>
-                  <p className="p-2 text-gray-700">Time: {card.time}</p>
-                  <p className="p-2 text-gray-700">Location: {card.location}</p>
-                </div>
-                <div className="card-actions">
-                  <button className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">More</button>
-                </div>
+            <div className="card-body flex flex-col items-center justify-center">
+              <h2 className="card-title text-black text-center text-2xl font-bold top-10">
+                {card.title}
+              </h2>
+              <div className="text-left font-bold">
+                <p className="p-2 text-gray-700">Date: {card.date}</p>
+                <p className="p-2 text-gray-700">Time: {card.time}</p>
+                <p className="p-2 text-gray-700">Location: {card.location}</p>
+              </div>
+              <div className="card-actions">
+                {card.title === 'Climbing' && (
+                  <button onClick={openClimbingModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
+                    More
+                  </button>
+                )}
+                {card.title === 'Board Games' && (
+                  <button onClick={openBoardGamesModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
+                    More
+                  </button>
+                )}
+                {card.title === 'Fun Swedish' && (
+                  <button onClick={openFunSwedishModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
+                    More
+                  </button>
+                )}
+                {card.title === 'Crafts' && (
+                  <button onClick={openCraftsModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
+                    More
+                  </button>
+                )}
               </div>
             </div>
-          </motion.div>
-        ))}
+          </div>
+        </motion.div>
+      ))}
       </div>
 
       {/* Social Icons */}
-        <SocialIcons />
+      <SocialIcons />
+
+      {/* All Modal */}
+      <ClimbingModal isOpen={isClimbingModalOpen} onClose={closeClimbingModal} />
+      <BoardGamesModal isOpen={isBoardGamesModalOpen} onClose={closeBoardGamesModal} />
+      <FunSwedishModal isOpen={isFunSwedishModalOpen} onClose={closeFunSwedishModal} />
+      <CraftsModal isOpen={isCraftsModalOpen} onClose={closeCraftsModal} />
     </div>
   );
 }
