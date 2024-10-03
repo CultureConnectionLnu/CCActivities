@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import './App.css';
 import CCLogo from './assets/CCLogo.png';
 import SocialIcons from './Socialmedia.jsx';
@@ -45,6 +46,25 @@ function App() {
     }
   };
 
+  // Animation variants
+  const variants = {
+    initial: (index) => ({
+      y: index * 30,
+      scale: 1 - index * 0.05,
+    }),
+    animate: (index) => ({
+      y: index * 30,
+      scale: 1 - index * 0.05,
+      transition: { duration: 0.5 },
+    }),
+    exit: (index) => ({
+      y: index * 30 - 50,
+      scale: 1 - index * 0.05,
+      opacity: 0,
+      transition: { duration: 0.5 },
+    }),
+  };
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
       {/* Logo Section */}
@@ -65,15 +85,17 @@ function App() {
         onWheel={handleScroll}
       >
         {cards.map((card, index) => (
-          <div
+          <motion.div
             key={card.id}
-            className={`absolute left-0 w-full transition-transform duration-500 ${
-              index === 0 ? 'animate-flip' : ''
-            }`}
+            className="absolute left-0 w-full"
             style={{
-              top: `${index * 30}px`,
               zIndex: cards.length - index,
             }}
+            custom={index}
+            variants={variants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
             <div className="card bg-base-100 shadow-xl">
               <figure>
@@ -87,7 +109,7 @@ function App() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
