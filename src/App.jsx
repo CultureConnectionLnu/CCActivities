@@ -11,18 +11,28 @@ function App() {
       title: 'Card One',
       description: 'This is the first card.',
       image: CCLogo,
+      bgColor: 'bg-yellow-200',
     },
     {
       id: 2,
       title: 'Card Two',
       description: 'This is the second card.',
       image: CCLogo,
+      bgColor: 'bg-blue-200',
     },
     {
       id: 3,
       title: 'Card Three',
       description: 'This is the third card.',
       image: CCLogo,
+      bgColor: 'bg-red-200',
+    },
+    {
+      id: 4,
+      title: 'Card Frour',
+      description: 'This is the four card.',
+      image: CCLogo,
+      bgColor: 'bg-cyan-200',
     },
   ];
 
@@ -30,19 +40,19 @@ function App() {
 
   const rotateCards = () => {
     setCards((prevCards) => {
-      const [firstCard, ...rest] = prevCards;
-      return [...rest, firstCard];
+      const lastCard = prevCards[prevCards.length - 1];
+      return [lastCard, ...prevCards.slice(0, -1)];
     });
   };
 
   const handleScroll = (e) => {
     if (e.deltaY > 0) {
-      rotateCards();
-    } else {
       setCards((prevCards) => {
         const lastCard = prevCards[prevCards.length - 1];
         return [lastCard, ...prevCards.slice(0, -1)];
       });
+    } else {
+      rotateCards();
     }
   };
 
@@ -53,12 +63,12 @@ function App() {
       scale: 1 - index * 0.05,
     }),
     animate: (index) => ({
-      y: index * 30,
+      y: -(index * 30),
       scale: 1 - index * 0.05,
       transition: { duration: 0.5 },
     }),
     exit: (index) => ({
-      y: index * 30 - 50,
+      y: index * 30 + 50,
       scale: 1 - index * 0.05,
       opacity: 0,
       transition: { duration: 0.5 },
@@ -66,7 +76,7 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
+    <div className="flex flex-col items-center min-h-screen py-8">
       {/* Logo Section */}
       <div className="h-70 w-70 mx-auto sm:w-96 sm:h-96 mb-6">
         <div className="aspect-square">
@@ -80,7 +90,7 @@ function App() {
 
       {/* Card Stack */}
       <div
-        className="relative w-[280px] h-[400px]"
+        className="relative w-[280px] h-[400px] mb-8"
         onClick={rotateCards}
         onWheel={handleScroll}
       >
@@ -97,7 +107,7 @@ function App() {
             animate="animate"
             exit="exit"
           >
-            <div className="card bg-base-100 shadow-xl">
+            <div className={`card ${card.bgColor} shadow-xl border-2 border-black`}>
               <figure>
                 <img src={card.image} alt={card.title} className="object-cover" />
               </figure>
@@ -114,7 +124,9 @@ function App() {
       </div>
 
       {/* Social Icons */}
-      <SocialIcons />
+      <div className="mt-4">
+        <SocialIcons />
+      </div>
     </div>
   );
 }
