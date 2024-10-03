@@ -8,31 +8,35 @@ function App() {
   const cardData = [
     {
       id: 1,
-      title: 'Card One',
-      description: 'This is the first card.',
-      image: CCLogo,
-      bgColor: 'bg-yellow-200',
+      title: 'Climbing',
+      date: 'Every Monday',
+      time: '10:00 AM',
+      location: 'Bollgatan 1 (Town)',
+      bgColor: 'bg-yellow-300',
     },
     {
       id: 2,
-      title: 'Card Two',
-      description: 'This is the second card.',
-      image: CCLogo,
-      bgColor: 'bg-blue-200',
+      title: 'Board Games',
+      date: 'Every Tuesday',
+      time: '2:00 PM',
+      location: 'F-Building (Campus)',
+      bgColor: 'bg-blue-300',
     },
     {
       id: 3,
-      title: 'Card Three',
-      description: 'This is the third card.',
-      image: CCLogo,
-      bgColor: 'bg-red-200',
+      title: 'Fun Swedish',
+      date: 'Every Thursday',
+      time: '18:00',
+      location: 'F-Building (Campus)',
+      bgColor: 'bg-red-300',
     },
     {
       id: 4,
-      title: 'Card Frour',
-      description: 'This is the four card.',
-      image: CCLogo,
-      bgColor: 'bg-cyan-200',
+      title: 'Crafts',
+      date: 'Every Friday',
+      time: '18:00',
+      location: 'B-Building (Campus)',
+      bgColor: 'bg-green-300',
     },
   ];
 
@@ -59,16 +63,16 @@ function App() {
   // Animation variants
   const variants = {
     initial: (index) => ({
-      y: index * 30,
+      y: index * 80,
       scale: 1 - index * 0.05,
     }),
     animate: (index) => ({
-      y: -(index * 30),
+      y: -(index * 80),
       scale: 1 - index * 0.05,
       transition: { duration: 0.5 },
     }),
     exit: (index) => ({
-      y: index * 30 + 50,
+      y: index * 80 + 50,
       scale: 1 - index * 0.05,
       opacity: 0,
       transition: { duration: 0.5 },
@@ -90,7 +94,7 @@ function App() {
 
       {/* Card Stack */}
       <div
-        className="relative w-[280px] h-[400px] mb-8"
+        className="relative w-[280px] h-[500px] mb-8 mx-auto top-48"
         onClick={rotateCards}
         onWheel={handleScroll}
       >
@@ -107,15 +111,18 @@ function App() {
             animate="animate"
             exit="exit"
           >
-            <div className={`card ${card.bgColor} shadow-xl border-2 border-black`}>
-              <figure>
-                <img src={card.image} alt={card.title} className="object-cover" />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title">{card.title}</h2>
-                <p>{card.description}</p>
-                <div className="card-actions justify-end">
-                  <button className="btn btn-primary">Learn More</button>
+            <div className={`card ${card.bgColor} text-center rounded-2 border-2 border-black shadow-black shadow-xl`}>
+              <div className="card-body flex flex-col items-center justify-center">
+                <h2 className="card-title text-black text-center text-2xl font-bold top-10">
+                  {card.title}
+                </h2>
+                <div className='text-left font-bold'>
+                  <p className="p-2 text-gray-700">Date: {card.date}</p>
+                  <p className="p-2 text-gray-700">Time: {card.time}</p>
+                  <p className="p-2 text-gray-700">Location: {card.location}</p>
+                </div>
+                <div className="card-actions">
+                  <button className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">More</button>
                 </div>
               </div>
             </div>
@@ -124,9 +131,7 @@ function App() {
       </div>
 
       {/* Social Icons */}
-      <div className="mt-4">
         <SocialIcons />
-      </div>
     </div>
   );
 }
