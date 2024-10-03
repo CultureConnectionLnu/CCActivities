@@ -94,14 +94,14 @@ function App() {
 
       {/* Card Stack */}
       <div
-        className="relative w-[280px] h-[500px] mb-8 mx-auto top-48"
+        className="relative w-[280px] h-[500px] texts-bottom mx-auto"
         onClick={rotateCards}
         onWheel={handleScroll}
       >
         {cards.map((card, index) => (
           <motion.div
             key={card.id}
-            className="absolute left-0 w-full"
+            className="absolute bottom-0 left-0 w-full"
             style={{
               zIndex: cards.length - index,
             }}
