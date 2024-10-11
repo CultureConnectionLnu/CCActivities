@@ -1,35 +1,19 @@
+import { useState, useEffect } from "react";
+
 // eslint-disable-next-line react/prop-types
 function FunSwedishModal({ isOpen, onClose }) {
-  const images = [
-    {
-      url: 'https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp',
-      orientation: 'horizontal',
-    },
-    {
-      url: 'https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp',
-      orientation: 'vertical',
-    },
-    {
-      url: 'https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp',
-      orientation: 'horizontal',
-    },
-    {
-      url: 'https://www.mathopenref.com/images/lines/horizontal.png',
-      orientation: 'horizontal',
-    },
-    {
-      url: 'https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp',
-      orientation: 'vertical',
-    },
-    {
-      url: 'https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp',
-      orientation: 'horizontal',
-    },
-    {
-      url: 'https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp',
-      orientation: 'vertical',
-    },
-  ];
+  const [images, setLinks] = useState([]);
+
+    useEffect(() => {
+      fetch(`${import.meta.env.VITE_API_URL}/assets/swedish-fun-pictures`)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setLinks(data);
+        })
+        .catch((error) => console.error("Error fetching links:", error));
+    }, []);
 
   const totalSlides = images.length;
 
