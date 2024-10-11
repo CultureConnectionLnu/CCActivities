@@ -5,7 +5,7 @@ function ClimbingModal({ isOpen, onClose }) {
   const [images, setLinks] = useState([]);
 
     useEffect(() => {
-      fetch(`${import.meta.env.VITE_API_URL}/climbing-pictures`)
+      fetch(`${import.meta.env.VITE_API_URL}/assets/climbing-pictures`)
         .then((response) => {
           return response.json();
         })
