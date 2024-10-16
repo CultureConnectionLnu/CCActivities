@@ -106,9 +106,9 @@ function FunSwedishModal({ isOpen, onClose }) {
               )}
             </div>
 
-              {/* Swedish Language Immersion Event */}
+              {/* Swedish Fun Way */}
               <div className="mt-6">
-                <h3 className="font-bold text-2xl mb-4">Swedish Language Immersion</h3>
+                <h3 className="font-bold text-2xl mb-4">Swedish Fun Way</h3>
                 <p className="mb-4">
                   Join us for a fun and immersive experience to improve your Swedish naturally, just like children do! We provide an environment where Swedish is spoken in an engaging and understandable way, helping you acquire the language effortlessly.
                 </p>
@@ -120,12 +120,14 @@ function FunSwedishModal({ isOpen, onClose }) {
                 </p>
               </div>
               <div className="flex mb-4 justify-center">
-              <button onClick={onClose} className="`sm:w-96 mx-auto mt-6 text-center p-4 text-black rounded py-3 border-2 bg-red-300 border-black shadow-custom hover:shadow-none transition-all hover:translate-x-1 translate-y-1`">
-                More Information!
+              <button onClick={() => {
+                      window.location.href = 'https://swedishfun.cultureconnection.se';}}  
+                      className="sm:w-96 mx-auto mt-6 text-center p-4 text-black text-xl font-bold rounded py-3 border-2 bg-red-300 border-black shadow-sm shadow-black hover:shadow-none transition-all hover:translate-x-1 translate-y-1">
+                      More Information!
               </button>
               </div>
             <div className="flex mb-4 justify-center">
-              <button onClick={onClose} className="btn">
+              <button onClick={onClose} className="sm:w-96 mx-auto mt-6 text-center p-4 text-black text-xl font-bold rounded py-3 border-2 bg-gray-700 border-black shadow-sm shadow-black hover:shadow-none transition-all hover:translate-x-1 translate-y-1">
                 Close
               </button>
             </div>

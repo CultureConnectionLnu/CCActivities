@@ -124,7 +124,7 @@ function CraftsModal({ isOpen, onClose }) {
               </p>
             </div>
             <div className="flex mb-4 justify-center">
-              <button onClick={onClose} className="btn">
+              <button onClick={onClose} className="sm:w-96 mx-auto mt-6 text-center p-4 text-black text-xl font-bold rounded py-3 border-2 bg-gray-700 border-black shadow-sm shadow-black hover:shadow-none transition-all hover:translate-x-1 translate-y-1">
                 Close
               </button>
             </div>

@@ -175,6 +175,13 @@ function App() {
         </motion.div>
       ))}
       </div>
+      <div className="flex mb-4 justify-center">
+        <button onClick={() => {
+          window.location.href = 'https://cultureconnection.se';}} 
+          className="sm:w-96 mx-auto mt-6 text-center shadow-sm shadow-black text-xl font-bold p-4 text-black rounded py-3 border-2 bg-red-300 border-black shadow-custom hover:shadow-none transition-all hover:translate-x-1 translate-y-1">
+          Link Tree!
+        </button>
+      </div>
 
       {/* Social Icons */}
       <SocialIcons />
