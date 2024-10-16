@@ -175,7 +175,7 @@ function App() {
           </motion.div>
         ))}
       </div>
-      <div className="flex mb-4 justify-center">
+      <div className="flex p-6 justify-center">
         <button
           onClick={() => {
             window.location.href = 'https://cultureconnection.se';
