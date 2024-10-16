@@ -58,17 +58,6 @@ function App() {
     });
   };
 
-  const handleScroll = (e) => {
-    if (e.deltaY > 0) {
-      setCards((prevCards) => {
-        const lastCard = prevCards[prevCards.length - 1];
-        return [lastCard, ...prevCards.slice(0, -1)];
-      });
-    } else {
-      rotateCards();
-    }
-  };
-
   // Climbing
   const openClimbingModal = () => setIsClimbingModalOpen(true);
   const closeClimbingModal = () => setIsClimbingModalOpen(false);
@@ -107,7 +96,7 @@ function App() {
   return (
     <div className="flex flex-col items-center min-h-screen py-8">
       {/* Logo Section */}
-      <div className="h-70 w-70 mx-auto sm:w-96 sm:h-96 mb-6">
+      <div className="h-70 w-70 mx-auto sm:w-96 sm:h-96 mb-12">
         <div className="aspect-square">
           <img
             src={CCLogo}
@@ -121,64 +110,78 @@ function App() {
       <div
         className="relative w-[280px] h-[500px] texts-bottom mx-auto"
         onClick={rotateCards}
-        onWheel={handleScroll}
       >
-      {cards.map((card, index) => (
-        <motion.div
-          key={card.id}
-          className="absolute bottom-0 left-0 w-full"
-          style={{
-            zIndex: cards.length - index,
-          }}
-          custom={index}
-          variants={variants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          <div
-            className={`card ${card.bgColor} text-center rounded-2 border-2 border-black shadow-black shadow-xl`}
+        {cards.map((card, index) => (
+          <motion.div
+            key={card.id}
+            className="absolute bottom-0 left-0 w-full"
+            style={{
+              zIndex: cards.length - index,
+            }}
+            custom={index}
+            variants={variants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
           >
-            <div className="card-body flex flex-col items-center justify-center">
-              <h2 className="card-title text-black text-center text-2xl font-bold top-10">
-                {card.title}
-              </h2>
-              <div className="text-left font-bold">
-                <p className="p-2 text-gray-700">Date: {card.date}</p>
-                <p className="p-2 text-gray-700">Time: {card.time}</p>
-                <p className="p-2 text-gray-700">Location: {card.location}</p>
-              </div>
-              <div className="card-actions">
-                {card.title === 'Climbing' && (
-                  <button onClick={openClimbingModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
-                    More
-                  </button>
-                )}
-                {card.title === 'Board Games' && (
-                  <button onClick={openBoardGamesModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
-                    More
-                  </button>
-                )}
-                {card.title === 'Fun Swedish' && (
-                  <button onClick={openFunSwedishModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
-                    More
-                  </button>
-                )}
-                {card.title === 'Crafts' && (
-                  <button onClick={openCraftsModal} className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1">
-                    More
-                  </button>
-                )}
+            <div
+              className={`card ${card.bgColor} text-center rounded-2 border-2 border-black shadow-black shadow-xl`}
+            >
+              <div className="card-body flex flex-col items-center justify-center">
+                <h2 className="card-title text-black text-center text-2xl font-bold top-10">
+                  {card.title}
+                </h2>
+                <div className="text-left font-bold">
+                  <p className="p-2 text-gray-700">Date: {card.date}</p>
+                  <p className="p-2 text-gray-700">Time: {card.time}</p>
+                  <p className="p-2 text-gray-700">Location: {card.location}</p>
+                </div>
+                <div className="card-actions">
+                  {card.title === 'Climbing' && (
+                    <button
+                      onClick={openClimbingModal}
+                      className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1"
+                    >
+                      More
+                    </button>
+                  )}
+                  {card.title === 'Board Games' && (
+                    <button
+                      onClick={openBoardGamesModal}
+                      className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1"
+                    >
+                      More
+                    </button>
+                  )}
+                  {card.title === 'Fun Swedish' && (
+                    <button
+                      onClick={openFunSwedishModal}
+                      className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1"
+                    >
+                      More
+                    </button>
+                  )}
+                  {card.title === 'Crafts' && (
+                    <button
+                      onClick={openCraftsModal}
+                      className="btn mt-2 bg-blue-500 text-black text-center p-12 rounded py-3 border-2 border-black shadow-black shadow-md hover:shadow-none  hover:bg-blue-200 transition-all hover:translate-x-1 translate-y-1"
+                    >
+                      More
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        ))}
       </div>
       <div className="flex mb-4 justify-center">
-        <button onClick={() => {
-          window.location.href = 'https://cultureconnection.se';}} 
-          className="sm:w-96 mx-auto mt-6 text-center shadow-sm shadow-black text-xl font-bold p-4 text-black rounded py-3 border-2 bg-red-300 border-black shadow-custom hover:shadow-none transition-all hover:translate-x-1 translate-y-1">
+        <button
+          onClick={() => {
+            window.location.href = 'https://cultureconnection.se';
+          }}
+          className="sm:w-96 mx-auto mt-6 text-center shadow-sm shadow-black text-xl font-bold p-4 text-black rounded py-3 border-2 bg-red-300 border-black shadow-custom hover:shadow-none transition-all hover:translate-x-1 translate-y-1"
+        >
           Link Tree!
         </button>
       </div>
