@@ -110,7 +110,7 @@ function BoardGamesModal({ isOpen, onClose }) {
               <div className="mt-6">
                 <h3 className="font-bold text-2xl mb-4">Board Game Night</h3>
                 <p className="mb-2">
-                  Board Game Night is happening every <strong>Monday at 18:00</strong>! Come and
+                  Board Game Night is happening every <strong>Tuesday at 18:00</strong>! Come and
                   enjoy a fun evening; entry is free as always! We’ll be meeting in{" "}
                   <strong>Building F</strong>.
                 </p>
